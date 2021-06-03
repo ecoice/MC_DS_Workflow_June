@@ -1,5 +1,5 @@
 ---
-title: "R Notebook DS Workflow -- made a another change 2"
+title: "R Notebook DS Workflow - update 2"
 output: html_notebook
 ---
 
@@ -19,7 +19,7 @@ records <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/ti
 
 Data Wrangle
 
-```{r}
+```{r message=FALSE}
 records1 <- records %>%
  filter(!(track %in% "Luigi Raceway")) %>%
  filter(date >= "2000-10-10" & 
@@ -43,4 +43,28 @@ p
 ```{r}
 ggplotly(p)
 ```
+
+```{r}
+
+records2 <- records %>%
+ filter(type %in% "Three Lap") %>%
+ filter(date >= "2011-06-30" & date <= 
+    "2021-02-25")
+
+```
+
+```{r}
+  p2 <- ggplot(data=records2, aes(x = shortcut, y = time, fill = player)) +
+ geom_boxplot() +
+ scale_fill_hue() +
+ theme_minimal()
+```
+
+
+
+```{r}
+ggplotly(p2)
+```
+
+
 
